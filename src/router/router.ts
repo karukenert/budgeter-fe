@@ -1,24 +1,32 @@
 import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router';
 
+export enum ERoutes {
+    BUDGETS = 'BUDGETS',
+    BUDGET_DETAILED = 'BUDGET_DETAILED',
+    BUDGET_TRANSACTIONS_DETAILED = 'BUDGET_TRANSACTIONS_DETAILED',
+    LOGIN = 'LOGIN',
+    LOGOUT = 'LOGOUT',
+}
+
 export const routes: RouteRecordRaw[] = [
     {
         path: '/budgets',
         component: () => import('../views/BudgetsView.vue'),
-        name: 'Budgets',
+        name: ERoutes.BUDGETS,
         meta: {
             requiresAuth: true
         },
         children: [
             {
                 path: ':budgetKey',
-                component: () => import('../views/BudgetDetailed.vue'),
-                name: 'BudgetDetailed',
+                component: () => import('../views/views-detailed/BudgetDetailed.vue'),
+                name: ERoutes.BUDGET_DETAILED,
                 props: true
             },
             {
                 path: ':budgetKey/transactions',
-                component: () => import('../views/BudgetTransactionsDetailed.vue'),
-                name: 'BudgetTransactionsDetailed',
+                component: () => import('../views/views-detailed/BudgetTransactionsDetailed.vue'),
+                name: ERoutes.BUDGET_TRANSACTIONS_DETAILED,
                 props: true
             },
         ]
@@ -26,15 +34,15 @@ export const routes: RouteRecordRaw[] = [
     {
         path: '/login',
         component: () => import( '../views/LoginView.vue'),
-        name: 'Login',
+        name: ERoutes.LOGIN,
         meta: {
-            hidden: true
+            hidden: true,
         }
     },
     {
         path: '/logout',
         component: () => import( '../views/LogoutView.vue'),
-        name: 'Logout',
+        name: ERoutes.LOGOUT,
         meta: {
             hidden: true
         }

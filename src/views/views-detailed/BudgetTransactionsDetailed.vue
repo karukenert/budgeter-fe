@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import {ref} from "vue";
-import {useAuth} from "@/composables/useAuth";
-import {ITransaction} from "@/types/transaction.interface";
-import TransactionsTable from "@/components/TransactionsTable.vue"
+import {ITransaction} from "../../types/transaction.interface";
+import TransactionsTable from "../../components/TransactionsTable.vue"
 
 // const {client} = useAuth()
 //

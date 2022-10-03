@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import TheDrawer from '../components/TheDrawer.vue'
 </script>
 
 <template>
-  BudgetsView
+  <the-drawer/>
+  <router-view/>
 </template>

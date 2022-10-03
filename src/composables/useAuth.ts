@@ -14,6 +14,7 @@ const login = async (email: string, password: string) => {
         console.error(e)
     }
 };
+const logout = () => client.authStore.clear();
 
 export function useAuth() {
 
@@ -24,6 +25,7 @@ export function useAuth() {
         client,
         user,
         isAuthenticated,
-        login
+        login,
+        logout
     }
 }

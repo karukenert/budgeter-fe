@@ -3,6 +3,7 @@ import {useRouter} from "vue-router";
 import {ref} from 'vue'
 import {useAuth} from "../composables/useAuth";
 import type {VForm} from 'vuetify/lib/components'
+import {ERoutes} from "../router/router";
 
 const router = useRouter();
 const {isAuthenticated, login} = useAuth()
@@ -20,7 +21,7 @@ const model = ref<{
 const handleLogin = async () => {
   const {email, password} = model.value;
   if (email && password) await login(email, password)
-  if (isAuthenticated.value) await router.push({ name:'Budgets' })
+  if (isAuthenticated.value) await router.push({ name: ERoutes.BUDGETS })
 }
 
 // TODO: typing
@@ -51,7 +52,7 @@ const rules = {
     <v-text-field
         v-model="model.password"
         :rules="rules.password"
-        label="Passoword"
+        label="Password"
         required
     />
 

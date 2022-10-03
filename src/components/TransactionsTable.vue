@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {ITransaction} from "@/types/transaction.interface";
+import {ITransaction} from "../types/transaction.interface";
 
 const columns = [
   {
