@@ -12,7 +12,7 @@
     "esModuleInterop": true,
     "lib": ["ESNext", "DOM"],
     "skipLibCheck": true,
-//    "baseUrl":  "./", TODO redundant?
+//    "baseUrl":  ".", //TODO redundant?
     "paths": {
       "@/*": ["./src/*"],
     }
