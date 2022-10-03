@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import {useRouter} from "vue-router";
 import {ref} from 'vue'
-import {useAuth} from "@/composables/useAuth";
+import {useAuth} from "../composables/useAuth";
+import type {VForm} from 'vuetify/lib/components'
 
 const router = useRouter();
 const {isAuthenticated, login} = useAuth()
 
+const form = ref<InstanceType<typeof VForm> | null>(null)
+const formValid = ref(false)
 const model = ref<{
   email: string | null
   password: string | null
@@ -14,37 +17,51 @@ const model = ref<{
   password: null,
 })
 
-const loginLocal = async () => {
+const handleLogin = async () => {
   const {email, password} = model.value;
   if (email && password) await login(email, password)
-  if (isAuthenticated.value) await router.push({name:'Budgets'})
+  if (isAuthenticated.value) await router.push({ name:'Budgets' })
+}
+
+// TODO: typing
+const rules = {
+  email: [
+    v => !!v || 'E-mail is required',
+    v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+  ],
+  password: [v => !!v || 'Password is required']
 }
 
 </script>
 
 <template>
-  Login
-<!--  <n-space justify="center">-->
-<!--    <n-form :model="model"  @keydown.enter.prevent="login">-->
-<!--      <n-form-item path="email" label="Email" required>-->
-<!--        <n-input v-model:value="model.email" type="text"/>-->
-<!--      </n-form-item>-->
-<!--      <n-form-item path="password" label="Password" required >-->
-<!--        <n-input-->
-<!--            v-model:value="model.password"-->
-<!--            auto-complete="on"-->
-<!--            type="password"-->
-<!--        />-->
-<!--      </n-form-item>-->
-<!--      <n-button-->
-<!--          :disabled="!model.password || !model.email"-->
-<!--          auto-complete="on"-->
-<!--          round-->
-<!--          type="primary"-->
-<!--          @click="loginLocal"-->
-<!--      >-->
-<!--        Login-->
-<!--      </n-button>-->
-<!--    </n-form>-->
-<!--  </n-space>-->
+  <v-form
+      ref="form"
+      v-model="formValid"
+      lazy-validation
+  >
+    <v-text-field
+        v-model="model.email"
+        :counter="10"
+        :rules="rules.email"
+        label="E-mail"
+        required
+    />
+
+    <v-text-field
+        v-model="model.password"
+        :rules="rules.password"
+        label="Passoword"
+        required
+    />
+
+    <v-btn
+        :disabled="!formValid"
+        color="success"
+        class="mr-4"
+        @click="handleLogin"
+    >
+      Login
+    </v-btn>
+  </v-form>
 </template>
