@@ -16,11 +16,10 @@ const login = async (email: string, password: string) => {
 };
 const logout = () => client.authStore.clear();
 
-export function useAuth() {
+const isAuthenticated = computed(()=> !!client.authStore.model)
+const user = computed(()=> client.authStore.model)
 
-    const isAuthenticated = computed(()=> !!client.authStore.model)
-    const user = computed(()=> client.authStore.model)
-
+export function usePocketBase() {
     return {
         client,
         user,

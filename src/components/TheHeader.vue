@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import {routes,ERoutes} from '../router/router'
-import {useAuth} from "../composables/useAuth";
+import {usePocketBase} from "../composables/usePocketBase";
 
-const {isAuthenticated} = useAuth()
+const {isAuthenticated} = usePocketBase()
 </script>
 
 <template>

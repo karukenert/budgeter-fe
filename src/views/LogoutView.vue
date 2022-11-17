@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import {onMounted} from "vue";
 import {useRouter} from "vue-router";
-import {useAuth} from "../composables/useAuth";
+import {usePocketBase} from "../composables/usePocketBase";
 import {ERoutes} from "../router/router";
 
-const {logout} = useAuth()
+const {logout} = usePocketBase()
 const router = useRouter()
 
 onMounted(() => {
