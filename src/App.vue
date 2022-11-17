@@ -3,9 +3,7 @@
     <the-header/>
     <v-main>
       <v-container fluid>
-        <v-content>
-          <router-view/>
-        </v-content>
+        <router-view/>
       </v-container>
     </v-main>
   </v-app>

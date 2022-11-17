@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import {ref} from "vue";
-import {ITransaction} from "../../types/transaction.interface";
-import TransactionsTable from "../../components/TransactionsTable.vue"
+// TODO: add shorthand paths
+import {ITransaction} from "../../../types/transaction.interface";
+import TransactionsTable from "../../../components/TransactionsTable.vue"
 
 // const {client} = useAuth()
 //

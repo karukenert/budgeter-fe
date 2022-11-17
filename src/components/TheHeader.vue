@@ -3,10 +3,12 @@ import {routes,ERoutes} from '../router/router'
 import {usePocketBase} from "../composables/usePocketBase";
 
 const { isAuthenticated } = usePocketBase()
+// TODO: show privileged tabs
+// const authLinks = computed(()=> isAuthenticated.value ? routes.filter(i => i.meta?.requiresAuth).filter(i => !i.meta?.hidden) : [])
 </script>
 
 <template>
-  <v-app-bar app dense>
+  <v-app-bar app flat>
     <template v-for="link in routes">
       <v-btn v-if="!link.meta?.hidden" link :to="{name: link.name}" :key="`${String(link.name)}_key`" >
         {{ link.name }}
