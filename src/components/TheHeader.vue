@@ -8,15 +8,15 @@ const { isAuthenticated } = usePocketBase()
 <template>
   <v-app-bar app dense>
     <template v-for="link in routes">
-      <v-btn v-if="!link.meta?.hidden" link :to="{name: link.name}" :key="`${String(link.name)}_key`" rounded="xl">
+      <v-btn v-if="!link.meta?.hidden" link :to="{name: link.name}" :key="`${String(link.name)}_key`" >
         {{ link.name }}
       </v-btn>
     </template>
     <v-spacer/>
-    <v-btn v-if="isAuthenticated" link :to="{name: ERoutes.LOGOUT}" key="logout_key" rounded="xl">
+    <v-btn v-if="isAuthenticated" link :to="{name: ERoutes.LOGOUT}" key="logout_key">
       Sign out
     </v-btn>
-    <v-btn v-else link :to="{name: ERoutes.LOGIN}" key="login_key" rounded="xl">
+    <v-btn v-else link :to="{name: ERoutes.LOGIN}" key="login_key">
       Sign in
     </v-btn>
   </v-app-bar>
