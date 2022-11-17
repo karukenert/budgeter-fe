@@ -66,6 +66,7 @@ const displayPassword = ref(false);
         color="success"
         class="mr-4"
         @click="handleLogin"
+        rounded="xl"
     >
       Login
     </v-btn>

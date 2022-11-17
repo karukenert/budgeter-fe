@@ -16,10 +16,12 @@ const login = async (email: string, password: string) => {
 };
 const logout = () => client.authStore.clear();
 
-const isAuthenticated = computed(()=> !!client.authStore.model)
 const user = computed(()=> client.authStore.model)
 
 export function usePocketBase() {
+// TODO: fix, not updating always
+const isAuthenticated = computed(()=> !!client.authStore.model)
+
     return {
         client,
         user,

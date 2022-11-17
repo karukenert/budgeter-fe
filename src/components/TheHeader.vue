@@ -2,21 +2,21 @@
 import {routes,ERoutes} from '../router/router'
 import {usePocketBase} from "../composables/usePocketBase";
 
-const {isAuthenticated} = usePocketBase()
+const { isAuthenticated } = usePocketBase()
 </script>
 
 <template>
   <v-app-bar app dense>
     <template v-for="link in routes">
-      <v-btn v-if="!link.meta?.hidden"  link :to="{name: link.name}"  :key="`${String(link.name)}_key`">
+      <v-btn v-if="!link.meta?.hidden" link :to="{name: link.name}" :key="`${String(link.name)}_key`" rounded="xl">
         {{ link.name }}
       </v-btn>
     </template>
     <v-spacer/>
-    <v-btn v-if="isAuthenticated" link :to="{name: ERoutes.LOGOUT}" key="logout_key">
+    <v-btn v-if="isAuthenticated" link :to="{name: ERoutes.LOGOUT}" key="logout_key" rounded="xl">
       Sign out
     </v-btn>
-    <v-btn v-else link :to="{name: ERoutes.LOGIN}" key="login_key" >
+    <v-btn v-else link :to="{name: ERoutes.LOGIN}" key="login_key" rounded="xl">
       Sign in
     </v-btn>
   </v-app-bar>

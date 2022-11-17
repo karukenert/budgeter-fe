@@ -1,18 +1,33 @@
 <script setup lang="ts">
-import {ref} from "vue";
+import {computed, ref} from "vue";
+import {useRoute, useRouter} from "vue-router";
 import {ERoutes} from "../router/router";
 // TODO: fetch user budgets in onMounted callback
 
-const budgets = ref<Record<string, unknown>[]>([{a:1}, {a:2}, {a:3}]);
+const route = useRoute();
+
+const budgets = ref<Record<string, unknown>[]>([{budgketKey: 1}, {budgketKey: 2}, {budgketKey: 3}]);
+const activeBudgetKey = computed(() => route.params.budgetKey)
+
+// TODO: show wrench to owners only
 </script>
 
 <template>
   <v-navigation-drawer app>
     <v-list>
-      <v-list-item link v-for="i in budgets" :to="{ name: ERoutes.BUDGET_TRANSACTIONS_DETAILED, params: { budgetKey: i.a }}" >
-        {{ i }}
-      <!-- TODO: settings btn to go to ERoutes.BUDGET_DETAILED -->
-      </v-list-item>
+      <template v-for="i in budgets">
+        <v-hover v-slot:default="{ isHovering, props }">
+          <v-list-item v-bind="props" nav link class="mx-2" rounded="xl"
+                       :to="{ name: ERoutes.BUDGET_TRANSACTIONS_DETAILED, params: { budgetKey: i.budgketKey }}">
+            {{ i }} {{ activeBudgetKey === i.budgketKey }}
+
+            <template #append="listItemProps ">
+              <v-btn v-show="isHovering" size="x-small" icon="mdi-wrench" link
+                     :to="{ name: ERoutes.BUDGET_DETAILED, params: { budgetKey: i.budgketKey }}"/>
+            </template>
+          </v-list-item>
+        </v-hover>
+      </template>
     </v-list>
   </v-navigation-drawer>
 </template>
