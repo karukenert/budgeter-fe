@@ -1,4 +1,4 @@
-import {ITag} from "./tag.enum";
+import {ITag} from "./tag.interface";
 import {ITransaction} from "./transaction.interface";
 import {IUser} from "./user.interface";
 
@@ -9,7 +9,7 @@ export interface IBudget {
     transactions: ITransaction[]; // TODO: lisada
     start: string; // dd-mm-yyyy;
     end: string; // dd-mm-yyyy;
-    createdBy: IUser['id'];
-    participants: IUser['id'][];
+    createdBy: IUser;
+    participants: IUser[];
     acceptedTags: ITag[];
 }

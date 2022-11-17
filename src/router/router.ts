@@ -1,6 +1,7 @@
 import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router';
 
 export enum ERoutes {
+    TAGS = 'TAGS',
     BUDGETS = 'BUDGETS',
     BUDGET_DETAILED = 'BUDGET_DETAILED',
     BUDGET_TRANSACTIONS_DETAILED = 'BUDGET_TRANSACTIONS_DETAILED',
@@ -30,6 +31,14 @@ export const routes: RouteRecordRaw[] = [
                 props: true
             },
         ]
+    },
+    {
+        path: '/tags',
+        component: () => import('../views/TagsView.vue'),
+        name: ERoutes.TAGS,
+        meta: {
+            requiresAuth: true
+        },
     },
     {
         path: '/login',

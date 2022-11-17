@@ -19,7 +19,7 @@ const model = ref<{
 })
 
 const handleLogin = async () => {
-  const { email, password } = model.value;
+  const {email, password} = model.value;
   if (email && password) {
     await login(email, password)
     if (isAuthenticated.value) await router.push({name: ERoutes.BUDGETS})
@@ -38,36 +38,41 @@ const displayPassword = ref(false);
 </script>
 
 <template>
-  <v-form
-      ref="form"
-      v-model="formValid"
-  >
-    <v-text-field
-        v-model="model.email"
-        :counter="10"
-        :rules="rules.email"
-        label="E-mail"
-        required
-        type="email"
-    />
-
-    <v-text-field
-        v-model="model.password"
-        :rules="rules.password"
-        label="Password"
-        required
-        :type="displayPassword ? 'text' : 'password'"
-        :append-icon="displayPassword ? 'mdi-eye' : 'mdi-eye-off'"
-        @click:append="displayPassword = !displayPassword"
-    />
-
-<!--        :disabled="!formValid"-->
-    <v-btn
-        color="success"
-        class="mr-4"
-        @click="handleLogin"
+  <v-card class="ma-5 pa-5">
+    <v-form
+        ref="form"
     >
-      Login
-    </v-btn>
-  </v-form>
+<!--        v-model="formValid"-->
+      <v-text-field
+          v-model="model.email"
+          :counter="10"
+          :rules="rules.email"
+          label="E-mail"
+          required
+          type="email"
+      />
+
+      <v-text-field
+          v-model="model.password"
+          :rules="rules.password"
+          label="Password"
+          required
+          :type="displayPassword ? 'text' : 'password'"
+      >
+        <template #append>
+          <v-icon @click="displayPassword = !displayPassword"
+          >{{displayPassword ? 'mdi-eye' : 'mdi-eye-off' }}</v-icon>
+        </template>
+      </v-text-field>
+
+<!--          :disabled="!formValid"-->
+      <v-btn
+          color="success"
+          class="mr-4"
+          @click="handleLogin"
+      >
+        Login
+      </v-btn>
+    </v-form>
+  </v-card>
 </template>

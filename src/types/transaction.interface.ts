@@ -1,4 +1,4 @@
-import {ITag} from "./tag.enum";
+import {ITag} from "./tag.interface";
 import {IUser} from "./user.interface";
 
 export interface ITransaction {
