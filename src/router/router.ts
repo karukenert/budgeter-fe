@@ -22,13 +22,11 @@ export const routes: RouteRecordRaw[] = [
                 path: ':budgetKey',
                 component: () => import('../views/views-detailed/budget/BudgetDetailed.vue'),
                 name: ERoutes.BUDGET_DETAILED,
-                props: true
             },
             {
                 path: ':budgetKey/transactions',
                 component: () => import('../views/views-detailed/budget/BudgetTransactionsDetailed.vue'),
                 name: ERoutes.BUDGET_TRANSACTIONS_DETAILED,
-                props: true
             },
         ]
     },

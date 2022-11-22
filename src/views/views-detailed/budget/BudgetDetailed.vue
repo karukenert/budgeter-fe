@@ -1,10 +1,10 @@
 <script setup lang="ts">
+import {useRouteParams} from "@vueuse/router";
 import { ref} from "vue";
 // import DeleteBudgetDialog from "./dialog/DeleteBudgetDialog.vue";
 
-const props = defineProps<{
-  budgetKey: string
-}>();
+const activeBudgetKey = useRouteParams('budgetKey')
+
 
 const dialogActive = ref(false)
 const openDeleteModal = () => {
@@ -16,7 +16,7 @@ const openDeleteModal = () => {
 
 <template>
   <div class="d-flex">
-    <p> Budget Detailed: {{ props.budgetKey }}</p>
+    <p> Budget Detailed: {{ activeBudgetKey }}</p>
     <v-spacer/>
 <!--    <delete-budget-dialog :dialog="dialogActive" :budget-key="props.budgetKey"/>-->
     <v-btn color="red" @click="openDeleteModal">Delete budget</v-btn>

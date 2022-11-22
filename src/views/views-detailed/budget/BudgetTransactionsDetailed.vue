@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import {useRouteParams} from "@vueuse/router";
 import {ref} from "vue";
 // TODO: add shorthand paths
 import {ITransaction} from "../../../types/transaction.interface";
@@ -6,9 +7,9 @@ import TransactionsTable from "../../../components/TransactionsTable.vue"
 
 // const {client} = useAuth()
 //
-const props = defineProps<{
-  budgetKey: string
-}>();
+
+const activeBudgetKey = useRouteParams('budgetKey')
+
 // const error = ref('')
 //
 const data = ref<ITransaction[]>([]);
@@ -28,7 +29,7 @@ const data = ref<ITransaction[]>([]);
 </script>
 
 <template>
-  Budget Transactions Detailed: {{ props.budgetKey }}
+  Budget Transactions Detailed: {{ activeBudgetKey }}
   <!--  <n-tabs key="tabs" type="card" v-model:value="chosenMonth" >-->
   <!--    <n-tab v-for="month in months" :key="`tab_${month}`" :name="EMonth[month]"  />-->
   <!--  </n-tabs>-->
